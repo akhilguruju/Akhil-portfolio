@@ -1,0 +1,177 @@
+@import './tokens.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition:
+    --bg var(--dur-theme) var(--ease-inout),
+    --surface var(--dur-theme) var(--ease-inout),
+    --fg var(--dur-theme) var(--ease-inout),
+    --muted var(--dur-theme) var(--ease-inout),
+    --line var(--dur-theme) var(--ease-inout),
+    --accent var(--dur-theme) var(--ease-inout);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  overflow-x: clip;
+}
+
+/* The custom cursor only takes over on fine pointers, once it has mounted */
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button {
+  cursor: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+em {
+  font-style: normal;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── Shared type roles ──────────────────────────────────────────────── */
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--fs-label);
+  font-stretch: 87.5%;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.display {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+/* Text that GSAP splits stays hidden until it is split, so it never flashes.
+   The fallback animation reveals it anyway if scripts fail after this point. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-split]:not(.is-split),
+  html.js [data-hero-fade],
+  html.js [data-intro] {
+    visibility: hidden;
+    animation: split-fallback 0s 3s forwards;
+  }
+}
+
+@keyframes split-fallback {
+  to { visibility: visible; }
+}
+
+/* SplitText names each line mask "<linesClass>-mask"; give descenders room without moving the layout */
+.split-line-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    transition: none;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,209 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  overflow: clip;
+  padding: 0 var(--gutter);
+}
+
+/* ── Name, set behind the portrait ─────────────────────────────────── */
+
+.name {
+  position: absolute;
+  inset: calc(var(--nav-h) + 1.5vh) var(--gutter) auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.line {
+  display: block;
+  font-size: var(--fs-display);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.lineB {
+  align-self: flex-end;
+  margin-top: -0.02em;
+}
+
+.ghost {
+  z-index: 3;
+}
+
+.ghost .line {
+  color: transparent;
+  -webkit-text-stroke: 1.25px rgb(227 229 224 / 0.34);
+}
+
+/* ── Portrait ───────────────────────────────────────────────────────── */
+
+.portrait {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 50%;
+  height: min(93svh, 118vw);
+  aspect-ratio: 1200 / 1381;
+  translate: -50% 0;
+  /* the source crops through the right shoulder; feather both sides so no edge shows */
+  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 86%, transparent 99%);
+}
+
+.img,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.canvas {
+  opacity: 0;
+}
+
+/* Until WebGL decides, scripted visits keep the plain image hidden so it
+   never shows sharp before the canvas starts at low resolution. */
+:global(html.js) .hero[data-gl='pending'] .img {
+  visibility: hidden;
+  animation: show 0s 2.5s forwards;
+}
+
+.hero[data-gl='on'] .img {
+  visibility: hidden;
+}
+
+.hero[data-gl='on'] .canvas {
+  opacity: 1;
+}
+
+@keyframes show {
+  to { visibility: visible; }
+}
+
+/* ── Statement ─────────────────────────────────────────────────────── */
+
+.statement {
+  position: absolute;
+  z-index: 3;
+  left: var(--gutter);
+  bottom: clamp(1.75rem, 5.5vh, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: min(27rem, 34vw);
+}
+
+.kicker {
+  color: var(--accent);
+}
+
+.thesis {
+  font-size: clamp(2.25rem, 1.2rem + 2.7vw, 4rem);
+  font-weight: 500;
+  font-stretch: 90%;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.thesis em {
+  font-size: 1.08em;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  max-width: 24rem;
+}
+
+/* ── Readout ───────────────────────────────────────────────────────── */
+
+.readout {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(1.75rem, 5.5vh, 3.5rem);
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.readoutKey {
+  color: var(--muted);
+}
+
+.readoutValue {
+  font-size: 1.125rem;
+  font-stretch: 100%;
+  letter-spacing: -0.02em;
+}
+
+.readoutStatus {
+  color: var(--accent);
+}
+
+.readoutStatus::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.5rem;
+  vertical-align: 0.1em;
+  background: currentColor;
+}
+
+/* ── Small screens ─────────────────────────────────────────────────── */
+
+@media (max-width: 899px) {
+  .name {
+    inset: calc(var(--nav-h) + 0.5rem) var(--gutter) auto;
+  }
+
+  .line {
+    font-size: clamp(4.5rem, 24vw, 12rem);
+  }
+
+  .portrait {
+    height: min(74svh, 150vw);
+  }
+
+  /* Statement sits on the suit; a scrim keeps it legible */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    height: 42%;
+    background: linear-gradient(to top, var(--bg) 22%, transparent);
+    pointer-events: none;
+  }
+
+  .statement {
+    right: var(--gutter);
+    bottom: 1.5rem;
+    max-width: none;
+    gap: 0.75rem;
+  }
+
+  .thesis {
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
+  }
+
+  .readout {
+    top: calc(var(--nav-h) + 0.5rem + 2 * clamp(4.5rem, 24vw, 12rem) * 0.82 + 1rem);
+    bottom: auto;
+    justify-items: start;
+    left: var(--gutter);
+    right: auto;
+  }
+}

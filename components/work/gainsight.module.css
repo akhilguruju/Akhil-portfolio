@@ -1,0 +1,104 @@
+/* Followed directly by the agents case on the same ink panel, so trim the seam */
+.section {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sub {
+  color: var(--muted);
+  padding-bottom: 1rem;
+}
+
+.process {
+  border-top: 1px solid var(--line);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 2.5rem 7rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stepNo {
+  color: var(--accent);
+}
+
+.stepName {
+  font-weight: 700;
+  font-stretch: 85%;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.stepText {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.bridge {
+  font-size: var(--fs-lead);
+  line-height: 1.3;
+}
+
+.area {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.25rem 0;
+}
+
+.areaRule {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: left;
+}
+
+.areaName {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  font-stretch: 80%;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  transition: color var(--dur-fast) linear, font-stretch 600ms var(--ease-out);
+}
+
+.area:hover .areaName {
+  color: var(--accent);
+  font-stretch: 92%;
+}
+
+.areaNote {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+  }
+
+  .stepText {
+    grid-column: 2;
+  }
+}

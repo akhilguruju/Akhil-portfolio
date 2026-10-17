@@ -1,0 +1,184 @@
+.contact {
+  position: relative;
+  overflow: clip;
+}
+
+/* ── Marquee ────────────────────────────────────────────────────────── */
+
+.marquee {
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.run {
+  display: flex;
+}
+
+.runItem {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 6rem);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.star {
+  margin: 0 0.5em;
+  font-size: 0.5em;
+  color: var(--accent);
+}
+
+/* ── Body ───────────────────────────────────────────────────────────── */
+
+.inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-pad) var(--gutter) clamp(5rem, 10vw, 9rem);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.title {
+  margin: clamp(2rem, 4vw, 3.5rem) 0 clamp(3rem, 6vw, 5rem);
+  font-size: clamp(3.5rem, 1rem + 10vw, 12rem);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.title em {
+  font-size: 1.04em;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+
+.body {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sub {
+  max-width: 34rem;
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.mailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2rem;
+}
+
+.mail {
+  position: relative;
+  padding-bottom: 0.15em;
+  font-size: clamp(1.75rem, 0.8rem + 4.2vw, 5.25rem);
+  font-weight: 600;
+  font-stretch: 85%;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+
+.mailLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform-origin: left;
+  transition: transform 700ms var(--ease-out);
+}
+
+.mail:hover .mailLine {
+  transform: scaleX(0.35);
+}
+
+.copy {
+  display: inline-grid;
+  place-items: center;
+  min-width: 8.5rem;
+  min-height: 8.5rem;
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  transition: background-color var(--dur-fast) linear;
+}
+
+.copy:hover {
+  background: var(--accent);
+  color: var(--ink-950);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+.details > div {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.details dt {
+  color: var(--muted);
+}
+
+.details dd {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.details a {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+
+@media (max-width: 899px) {
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .copy {
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-full);
+  }
+}
+
+@media (max-width: 520px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+}

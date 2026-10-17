@@ -1,0 +1,144 @@
+.work {
+  position: relative;
+  padding: var(--section-pad) 0 0;
+}
+
+.inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.title {
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(6rem, 2rem + 22vw, 26rem);
+  line-height: 0.8;
+}
+
+.count {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.09em;
+  font-weight: 400;
+  font-stretch: 87.5%;
+  letter-spacing: 0;
+  vertical-align: top;
+  margin-left: 0.4em;
+  position: relative;
+  top: 0.3em;
+}
+
+/* ── Index ─────────────────────────────────────────────────────────── */
+
+.index {
+  border-top: 1px solid var(--line);
+}
+
+.index li {
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 18rem) 3rem;
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2.6vw, 2.25rem) 0.75rem;
+  isolation: isolate;
+  transition: color 500ms var(--ease-out);
+}
+
+/* Ink rises behind the row on hover */
+.row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fg);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 600ms var(--ease-out);
+}
+
+.row:hover,
+.row:focus-visible {
+  color: var(--bg);
+}
+
+.row:hover::before,
+.row:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.rowYear {
+  font-variant-numeric: tabular-nums;
+}
+
+.rowTitle {
+  font-size: clamp(2rem, 1rem + 4.2vw, 5.5rem);
+  font-weight: 700;
+  font-stretch: 78%;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: font-stretch 700ms var(--ease-out), letter-spacing 700ms var(--ease-out);
+}
+
+/* Widen on hover, but never enough to wrap and change the row height */
+.row:hover .rowTitle,
+.row:focus-visible .rowTitle {
+  font-stretch: 96%;
+  letter-spacing: -0.035em;
+}
+
+.rowKicker {
+  font-size: var(--fs-small);
+}
+
+.rowArrow {
+  justify-self: end;
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: transform 600ms var(--ease-out);
+}
+
+.row:hover .rowArrow {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 899px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem 1rem;
+    padding-inline: 0.25rem;
+  }
+
+  .rowYear {
+    grid-column: 1 / -1;
+  }
+
+  .rowKicker {
+    grid-column: 1;
+  }
+
+  .rowArrow {
+    grid-row: 2 / span 2;
+    grid-column: 2;
+  }
+
+  .row:hover .rowTitle {
+    font-stretch: 90%;
+  }
+}

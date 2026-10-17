@@ -1,0 +1,167 @@
+.agents {
+  position: relative;
+  padding: var(--section-pad) 0;
+}
+
+.agents + .agents {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.kicker {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(3.5rem, 1rem + 11vw, 13rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+.outcome {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.value {
+  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
+  font-weight: 700;
+  font-stretch: 80%;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+
+.outcomeLabel {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+}
+
+/* ── Graph ──────────────────────────────────────────────────────────── */
+
+.graph {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 50%, rgb(69 205 189 / 0.12), transparent 55%),
+    var(--surface);
+}
+
+.graph svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.edge {
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-opacity: 0.55;
+  stroke-dashoffset: 0;
+}
+
+.packet {
+  fill: var(--accent);
+}
+
+.hub {
+  fill: var(--accent);
+}
+
+.hubRing {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.35;
+  stroke-dasharray: 3 5;
+  transform-origin: 300px 200px;
+  animation: spin 24s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hubLabel {
+  position: absolute;
+  translate: -50% -50%;
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  color: var(--ink-950);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hubLabel small {
+  font-size: 0.5625rem;
+}
+
+.node {
+  position: absolute;
+  translate: -50% -50%;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .outcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .node {
+    font-size: 0.625rem;
+    padding: 0.4rem 0.6rem;
+  }
+}

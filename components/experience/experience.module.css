@@ -1,0 +1,186 @@
+.experience {
+  position: relative;
+  padding: var(--section-pad) 0;
+}
+
+.inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.title {
+  max-width: 14em;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 clamp(4rem, 8vw, 7rem);
+  font-size: var(--fs-statement);
+  font-weight: 500;
+  font-stretch: 92%;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.title em {
+  font-size: 1.06em;
+}
+
+.job {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(4rem, 7vw, 6rem);
+}
+
+.rule {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--fg);
+  opacity: 0.35;
+  transform-origin: left;
+}
+
+.yearCol {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--nav-h) + 1rem);
+}
+
+.year {
+  display: block;
+  font-size: clamp(5rem, 2rem + 11vw, 13.5rem);
+  color: var(--fg);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meta {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.company {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  font-stretch: 85%;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.period {
+  color: var(--accent);
+  margin-top: 0.25rem;
+}
+
+.location {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+/* Roles within a company: a short vertical timeline, newest first */
+.roles {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  padding-left: 1.75rem;
+}
+
+.roles::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: var(--line);
+}
+
+.roleItem {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.dot {
+  position: absolute;
+  left: calc(-1.75rem);
+  top: 0.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.roleItem:first-child .dot {
+  background: var(--accent);
+}
+
+.role {
+  font-size: var(--fs-lead);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dates {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills li {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.bullets li {
+  position: relative;
+  padding: 1rem 0 1rem 1.75rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.65rem;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+@media (max-width: 899px) {
+  .job {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .yearCol {
+    position: static;
+  }
+}

@@ -1,0 +1,18 @@
+.roll {
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  line-height: 1.2;
+  vertical-align: top;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 550ms var(--ease-out);
+}
+
+:is(a, button):hover > .roll .track,
+:is(a, button):focus-visible > .roll .track {
+  transform: translateY(-50%);
+}

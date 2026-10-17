@@ -1,0 +1,66 @@
+/* An 84px disc that rests scaled down to a dot, so growing it never re-lays out */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  display: none;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) linear;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: grid;
+  }
+}
+
+.cursor[data-visible='true'] {
+  opacity: 1;
+}
+
+.cursor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: scale(0.12);
+  transition: transform 500ms var(--ease-out), opacity 300ms linear;
+}
+
+.cursor[data-mode='link']::before {
+  transform: scale(0.42);
+  opacity: 0.55;
+}
+
+.cursor[data-mode='label']::before {
+  transform: scale(1);
+}
+
+.cursor[data-mode='hidden']::before {
+  transform: scale(0);
+}
+
+.label {
+  position: relative;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-stretch: 87.5%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bg);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms linear, transform 500ms var(--ease-out);
+}
+
+.cursor[data-mode='label'] .label {
+  opacity: 1;
+  transform: none;
+  transition-delay: 80ms;
+}

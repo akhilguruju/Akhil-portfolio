@@ -1,0 +1,117 @@
+.skills {
+  position: relative;
+  padding: var(--section-pad) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.title {
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(5rem, 1rem + 19vw, 22rem);
+  line-height: 0.8;
+}
+
+.groups {
+  border-top: 1px solid var(--line);
+}
+
+.group {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 1.25rem clamp(2rem, 5vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--line);
+  transition: opacity 500ms var(--ease-out);
+}
+
+/* Hovering a group quiets the others */
+@media (hover: hover) {
+  .groups:has(.group:hover) .group:not(:hover) {
+    opacity: 0.32;
+  }
+}
+
+.groupHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+}
+
+.groupName {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  font-stretch: 80%;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  transition: font-stretch 700ms var(--ease-out);
+}
+
+.group:hover .groupName {
+  font-stretch: 100%;
+}
+
+.groupMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.4rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.new {
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--paper-50);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.item {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transition: background-color var(--dur-fast) linear, color var(--dur-fast) linear, border-color var(--dur-fast) linear;
+}
+
+.item:hover {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+@media (max-width: 899px) {
+  .group {
+    grid-template-columns: 1fr;
+  }
+}

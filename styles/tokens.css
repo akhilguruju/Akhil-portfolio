@@ -1,0 +1,85 @@
+/*
+ * Palette is sampled from the portrait itself:
+ * ink = the suit, paper = the skin highlight, rim = the teal edge light.
+ */
+
+/* Semantic colours are registered so a theme change interpolates every
+   descendant that reads them, instead of snapping. */
+@property --bg      { syntax: '<color>'; inherits: true; initial-value: #0b0c0c; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: #121414; }
+@property --fg      { syntax: '<color>'; inherits: true; initial-value: #e3e5e0; }
+@property --muted   { syntax: '<color>'; inherits: true; initial-value: #8d9492; }
+@property --line    { syntax: '<color>'; inherits: true; initial-value: rgb(227 229 224 / 0.14); }
+@property --accent  { syntax: '<color>'; inherits: true; initial-value: #45cdbd; }
+
+:root {
+  /* Primitive */
+  --ink-950: #0b0c0c;
+  --ink-900: #121414;
+  --ink-800: #1a1d1d;
+  --fog-400: #8d9492;
+  --paper-50: #eceee9;
+  --paper-100: #e3e5e0;
+  --slate-600: #555b58;
+  --rim-200: #7fe3d6;
+  --rim-300: #45cdbd;
+  --rim-700: #0b6b63;
+  --rim-800: #0a4b47;
+  --rim-900: #073936;
+  --mist-300: #9fc4bf;
+
+  /* Type */
+  --fs-label: 0.75rem;
+  --fs-small: 0.875rem;
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --fs-lead: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  --fs-h3: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+  --fs-h2: clamp(3rem, 1.4rem + 7vw, 9.5rem);
+  --fs-statement: clamp(1.75rem, 1.05rem + 2.7vw, 3.9rem);
+  --fs-display: clamp(5.25rem, 0.6rem + 20.5vw, 24rem);
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 3.6vw, 3.5rem);
+  --max-w: 1680px;
+  --section-pad: clamp(6rem, 13vw, 13rem);
+  --nav-h: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 240ms;
+  --dur-base: 600ms;
+  --dur-theme: 900ms;
+
+  --radius: 4px;
+  --radius-full: 999px;
+}
+
+/* Theme roots — applied to <html> by the ThemeObserver as panels cross mid-screen */
+:root,
+:root[data-theme='ink'] {
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --fg: var(--paper-100);
+  --muted: var(--fog-400);
+  --line: rgb(227 229 224 / 0.14);
+  --accent: var(--rim-300);
+}
+
+:root[data-theme='paper'] {
+  --bg: var(--paper-100);
+  --surface: var(--paper-50);
+  --fg: var(--ink-950);
+  --muted: var(--slate-600);
+  --line: rgb(11 12 12 / 0.16);
+  --accent: var(--rim-700);
+}
+
+:root[data-theme='rim'] {
+  --bg: var(--rim-800);
+  --surface: var(--rim-900);
+  --fg: var(--paper-100);
+  --muted: var(--mist-300);
+  --line: rgb(227 229 224 / 0.2);
+  --accent: var(--rim-200);
+}
